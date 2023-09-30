@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div style="display: flex;justify-content: center;width: 100%; ">
+        <table border="1" style="width: 80%; ">
+            <thead style="color: rgb(247, 247, 247); background-color: aquamarine;">
+                <td style="background-color: rgb(32, 180, 165);">Name</td>
+                <td style="background-color: rgb(28, 89, 154);">Function</td>
+                <td style="background-color: rgb(148, 44, 140);">Origin text</td>
+                <td style="background-color: rgb(134, 147, 48);"> Respond Text</td>
+            </thead>
+            {% for row in rows %}
+            <tr>
+                <td>{{row['name']}}</td>
+                <td>{{row['funt']}}</td>
+                <td>{{row['oriText']}}</td>
+                <td>{{row['resText']}}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>

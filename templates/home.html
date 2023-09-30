@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITBot - Online Writing Assistant</title>
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sarabun">
+
+</head>
+
+<body>
+
+
+
+
+    <div class="container-nav">
+        <nav>
+            <img class="logo-img" src="static/image/FITBot.jpg" alt="FITBotlogo">
+            <div class="menubar">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="login.html">Account</a></li>
+                    <li><a href="dashboard">Dashboard</a></li>
+
+                </ul>
+            </div>
+            <div class="searchbar">
+                <input type="Search" placeholder="Search...">
+                <button>Search</button>
+            </div>
+        </nav>
+    </div>
+
+
+    <div class="main-function">
+        <!-- <h3>Online Writing Assistant Box</h3> -->
+        <div class="box-container">
+
+            <div class="wrapper-box">
+                <form method="POST" action="{{ url_for('ducanhtest')}}">
+                    <div class="wrapper-form">
+                        <textarea name="text" placeholder="Type something here...">{{ ori_text }}</textarea>
+                        <textarea name="text" placeholder="">{{ res_text }}</textarea>
+
+                    </div>
+                    <div class="list-button">
+                        <button class="btn-grammar" type="submit" name="action" value="grammar_check"> Grammar
+                            check</button>
+                        <button class="btn1-grammar" type="submit" name="action" value="paraphrase"> Paraphrase</button>
+                        <button class="btn2-grammar" type="submit" name="action" value="textCompletion"> Text
+                            Completion</button>
+                        <button class="btn3-grammar" type="submit" name="action" value="Plagiarism"> Plagiarism</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+
+
+        <div class="about-us">
+            <h1>About Us</h1>
+            <h2>FITBot - Powered Online Writing Assistant Tool will improve your writing skill</h2>
+            <p> Your words matter, and our Writing Assistant tool is designed to ensure you use the right ones. Our
+                product will improve your fluency in foreign languages. With simply enter your text into the input box,
+                FITBot will work with you to create the best writing</p>
+            <br>
+            <h2>Why use FITBot’s Writing Assistant Tool?</h2>
+            <p>Our product have several unique functions: Paraphrasing, Grammar Check, Plagiarism Check, Text Completion
+            </p>
+            <br>
+            <h2>FITBot’s Writing Assistant Tool helps you write better, faster, and smarter</h2>
+            <p>Our tool is free and easy to use—with just the click of a button, the writing tool will rephrase your
+                sentence, paragraph, essay, or article to your liking, with many options available to customize and
+                perfect the reworded text.</p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get Help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Writing Tools</h4>
+                    <ul>
+                        <li><a href="#">Grammar Check</a></li>
+                        <li><a href="#">Plagiarism Check</a></li>
+                        <li><a href="#">Text Completion</a></li>
+                        <li><a href="#">Paraphrasing</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
