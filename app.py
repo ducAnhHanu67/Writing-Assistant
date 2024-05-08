@@ -11,6 +11,17 @@ import sqlite3 as sql
 from googlesearch import search
 from fuzzywuzzy import fuzz
 
+from together import Together
+
+client = Together(api_key="24dee2c6a57f8afda4a21bf015bc22758aa228095d1ca542de9900727a9c469d")
+
+
+response = client.chat.completions.create(
+    model="meta-llama/Llama-3-8b-chat-hf",
+    messages=[{"role": "user", "content": "who is presedent in US"}],
+)
+print(response.choices[0].message.content)
+
 
 openai.organization = "org-qx0rscpLNsWzVxBULOKAyuRW"
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -108,29 +119,40 @@ def ducanhtest():
 
         if action == 'grammar_check':
 
-                response = openai.Completion.create(
-                engine="text-davinci-003",
-                prompt=(f"Please correct any grammatical errors in the following text:\n{text}\n"),
-                max_tokens=1024,
-                n=1,
-                stop=None,
-                temperature=0.7,
+                # response = openai.Completion.create(
+                # engine="text-davinci-003",
+                # prompt=(f"Please correct any grammatical errors in the following text:\n{text}\n"),
+                # max_tokens=1024,
+                # n=1,
+                # stop=None,
+                # temperature=0.7,
+                # )
+                response = client.chat.completions.create(
+                model="meta-llama/Llama-3-8b-chat-hf",
+                messages=[{"role": "user", "content": f"Please correct any grammatical errors in the following text:\n{text}\n" }],
                 )
-    
-                res_text = response.choices[0].text.strip()
+                
+                res_text = response.choices[0].message.content
                 addHistory('Grammar Check',text,res_text)
                 return render_template('home.html',ori_text=text, res_text=res_text)
         
         elif action == 'paraphrase':
-                response = openai.Completion.create(
-                engine="text-davinci-003",
-                prompt=f"Paraphrase the following sentence: {text}",
-                max_tokens=500,
-                n=10,
-                stop=None,
-                temperature=0.5
+                # response = openai.Completion.create(
+                # engine="text-davinci-003",
+                # prompt=f"Paraphrase the following sentence: {text}",
+                # max_tokens=500,
+                # n=10,
+                # stop=None,
+                # temperature=0.5
+                # )
+                # res_text= response.choices[0].text.strip()
+                response = client.chat.completions.create(
+                    model="meta-llama/Llama-3-8b-chat-hf",
+                    messages=[{"role": "user", "content": f"Paraphrase the following sentence: {text}"}],
                 )
-                res_text= response.choices[0].text.strip()
+                
+                res_text = response.choices[0].message.content
+
                 addHistory('Paraphrasing',text,res_text)
                 return render_template('home.html',ori_text=text, res_text=res_text)
         
