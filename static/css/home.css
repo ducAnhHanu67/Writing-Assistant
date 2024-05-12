@@ -9,13 +9,12 @@
   height: 90px;
   display: flex;
   justify-content: center;
-  background-color: #32ad59;
+  background-color: #645501;
 }
 
 nav {
   display: flex;
-  justify-content: space-between;
-  width: 90%;
+  width: 80%;
   height: 100%;
 
 }
@@ -264,4 +263,10 @@ ul {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 4px;
+}
+.btn-para{
+  padding:3px 5px;
+  background-color: #645501;
+
+
 }

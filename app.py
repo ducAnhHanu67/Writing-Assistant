@@ -184,6 +184,79 @@ def ducanhtest():
 
     return render_template('home.html')
 
+@app.route('/grammar', methods=['GET', 'POST'])
+def grammar():
+    if request.method == 'POST':
+        text = request.form['text']
+        action = request.form['action']  
+
+        if action == 'grammar_check':
+
+                # response = openai.Completion.create(
+                # engine="text-davinci-003",
+                # prompt=(f"Please correct any grammatical errors in the following text:\n{text}\n"),
+                # max_tokens=1024,
+                # n=1,
+                # stop=None,
+                # temperature=0.7,
+                # )
+                response = client.chat.completions.create(
+                model="meta-llama/Llama-3-8b-chat-hf",
+                messages=[{"role": "user", "content": f"Please correct any grammatical errors in the following text:\n{text}\n" }],
+                )
+                
+                res_text = response.choices[0].message.content
+                addHistory('Grammar Check',text,res_text)
+                return render_template('home.html',ori_text=text, res_text=res_text)
+        
+        elif action == 'paraphrase':
+                # response = openai.Completion.create(
+                # engine="text-davinci-003",
+                # prompt=f"Paraphrase the following sentence: {text}",
+                # max_tokens=500,
+                # n=10,
+                # stop=None,
+                # temperature=0.5
+                # )
+                # res_text= response.choices[0].text.strip()
+                response = client.chat.completions.create(
+                    model="meta-llama/Llama-3-8b-chat-hf",
+                    messages=[{"role": "user", "content": f"Paraphrase the following sentence: {text}"}],
+                )
+                
+                res_text = response.choices[0].message.content
+
+                addHistory('Paraphrasing',text,res_text)
+                return render_template('home.html',ori_text=text, res_text=res_text)
+        
+        elif action == 'textCompletion':
+            prompt = f"The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman:\n{text}\n\nResult:"
+            response = openai.Completion.create(
+            engine="text-davinci-003",
+            prompt=prompt,
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.5,
+            )
+            res_text= response.choices[0].text.strip()
+            addHistory('Text Completion',text,res_text)
+            return render_template('home.html',ori_text=text, res_text=res_text)
+        elif action=='Plagiarism':
+            result = check_plagiarism(text)
+            res_text = ""
+            for doc in result:
+                url = doc['url']
+                similarity = doc['similarity']
+                res_text += f"{url}\n {similarity} %\n"
+
+            addHistory('Plagiarism',text,res_text)
+            return render_template('home.html',ori_text=text, res_text=res_text)
+
+
+
+    return render_template('grammar.html')
+
 
 @app.route('/')
 def login():
