@@ -14,19 +14,15 @@
 </head>
 
 <body>
-
-
-
-
     <div class="container-nav">
         <nav style="display: flex; width: 80%; height: 100%;">
-            <img class="logo-img" src="static/image/FITBot.jpg" alt="FITBotlogo">
+            <img class="logo-img" src="static/image/Unicheck.png" alt="Unicheck">
             <div class="menubar">
                 <ul>
                     <li><a href="home">Paraphrasing Tool</a></li>
                     <li><a href="grammar">Grammar Checker</a></li>
-                    <li><a href="home">Text Completion</a></li>
-                    <li><a href="home">Plagiarism</a></li>
+                    <li><a href="textcompetion">Text Completion</a></li>
+                    <li><a href="plagiarism">Plagiarism</a></li>
                     <li><a href="dashboard">Dashboard</a></li>
 
                 </ul>
@@ -38,7 +34,7 @@
         <div class="box-container">
 
             <div class="wrapper-box">
-                <form method="POST" action="{{ url_for('ducanhtest')}}">
+                <form method="POST" action="{{ url_for('homeTest')}}">
                     <div class="wrapper-form " style="display: flex;">
                         <div style="position: relative; width: 50%;">
                             <textarea name="text" placeholder="Type something here...">{{ ori_text }}</textarea>
