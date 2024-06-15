@@ -174,10 +174,7 @@ def plagiarism():
     if request.method == 'POST':
         text = request.form['text']
         action = request.form['action'] 
-
-
         if action == 'plagiarism_check':
-
                 result = check_plagiarism(text)
                 res_text = ""
                 for doc in result:
@@ -208,6 +205,7 @@ def addHistory(funct,orinText,resText):
       (session['name'], funct, orinText,resText))
     conn.commit()
     conn.close()
+
 
 
 
