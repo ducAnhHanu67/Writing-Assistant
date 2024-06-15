@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template,url_for,session,redirect,abort
-import openai
 import os
 import pathlib
 from google.oauth2 import id_token
@@ -10,22 +9,11 @@ import requests
 import sqlite3 as sql
 from googlesearch import search
 from fuzzywuzzy import fuzz
-# from gramformer import Gramformer
-# import spacy
 from together import Together
 
 client = Together(api_key="24dee2c6a57f8afda4a21bf015bc22758aa228095d1ca542de9900727a9c469d")
-response = client.chat.completions.create(
-    model="meta-llama/Llama-3-8b-chat-hf",
-    messages=[{"role": "user", "content": "who is presedent in US"}],
-)
-print(response.choices[0].message.content)
 
-
-openai.organization = "org-qx0rscpLNsWzVxBULOKAyuRW"
 app = Flask(__name__, template_folder='templates', static_folder='static')
-
-openai.api_key = "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"
 
 
 app.secret_key = "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" # make sure this matches with that's in client_secret.json
