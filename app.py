@@ -114,6 +114,7 @@ def logout():
 @login_is_required
 def protected_area():
     return f"Hello {session['name']}! <br/> <a href='/logout'><button>Logout</button></a>"
+    
 
 @app.route('/home', methods=['GET', 'POST'])
 def homeTest():
@@ -148,18 +149,18 @@ def grammar():
                 return render_template('grammar.html',ori_text=text, res_text=res_text)
     return render_template('grammar.html')
 
-@app.route('/textcompetion', methods=['GET', 'POST'])
+@app.route('/textcompletion', methods=['GET', 'POST'])
 def completion():
     if request.method == 'POST':
         text = request.form['text']
         action = request.form['action'] 
 
 
-        if action == 'textcompetion':
+        if action == 'textcompletion':
 
                 response = client.chat.completions.create(
                 model="meta-llama/Llama-3-8b-chat-hf",
-                messages=[{"role": "user", "content": f"Please answer  text:\n{text}\n" }],
+                messages=[{"role": "user", "content": f"Please continue writing your words:\n{text}\n" }],
                 )
                 
                 res_text = response.choices[0].message.content
